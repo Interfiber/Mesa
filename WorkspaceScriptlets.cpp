@@ -9,126 +9,126 @@ Mesa::WorkspaceNameScriptlet::WorkspaceNameScriptlet() { name = "Workspace"; }
 
 void Mesa::WorkspaceNameScriptlet::onRun(std::shared_ptr<Workspace> workspace,
                                          const std::string &value) {
-  workspace->name = value;
+    workspace->name = value;
 
-  LOG("Workspace name set to: %s\n", value.c_str());
+    LOG("Workspace name set to: %s\n", value.c_str());
 }
 
 Mesa::VariableScriptlet::VariableScriptlet() { name = "Variable"; }
 
 void Mesa::VariableScriptlet::onRun(std::shared_ptr<Workspace> workspace,
                                     const std::string &value) {
-  std::string k, v;
+    std::string k, v;
 
-  bool writeToV = false;
+    bool writeToV = false;
 
-  for (char cChar : value) {
-    if (cChar == ' ')
-      writeToV = true;
+    for (char cChar: value) {
+        if (cChar == ' ')
+            writeToV = true;
 
-    if (writeToV) {
-      v += cChar;
-    } else {
-      k += cChar;
+        if (writeToV) {
+            v += cChar;
+        } else {
+            k += cChar;
+        }
     }
-  }
 
-  workspace->variables.insert({k, v});
+    workspace->variables.insert({k, v});
 }
 
 Mesa::ImportScriptlet::ImportScriptlet() { name = "Import"; }
 
 void Mesa::ImportScriptlet::onRun(std::shared_ptr<Workspace> workspace,
                                   const std::string &val) {
-  std::string value = val;
-  std::vector<std::string> split = Util_SplitString(value, ":");
+    std::string value = val;
+    std::vector<std::string> split = Util_SplitString(value, ":");
 
-  value = Util_TrimString(value);
+    value = Util_TrimString(value);
 
-  if (split.size() == 2) {
-    if (split[0] == "data") {
-      split[1] = Util_TrimString(split[1]);
+    if (split.size() == 2) {
+        if (split[0] == "data") {
+            split[1] = Util_TrimString(split[1]);
 
-      std::ifstream ifs(split[1]);
+            std::ifstream ifs(split[1]);
 
-      std::string data;
-      std::string line;
+            std::string data;
+            std::string line;
 
-      while (std::getline(ifs, line)) {
-        data += line + "\n";
-      }
+            while (std::getline(ifs, line)) {
+                data += line + "\n";
+            }
 
-      Mesa::Parser parser(data);
-      Mesa::ParsedFile file = parser.parse();
+            Mesa::Parser parser(data);
+            Mesa::ParsedFile file = parser.parse();
 
-      Mesa::Processor processor(file);
-      processor.buildProject(workspace);
+            Mesa::Processor processor(file);
+            processor.buildProject(workspace);
 
-      LOG("Imported data project from: %s\n", split[1].c_str());
+            LOG("Imported data project from: %s\n", split[1].c_str());
 
-      return;
+            return;
+        }
     }
-  }
 
-  LOG("Importing project from: %s\n", value.c_str());
+    LOG("Importing project from: %s\n", value.c_str());
 
-  if (!std::filesystem::exists(value)) {
-    LOG("Current Working Directory = %s\n",
-        std::filesystem::current_path().generic_string().c_str());
-    LOG("Cannot open project file! No such file or directory!\n");
+    if (!std::filesystem::exists(value)) {
+        LOG("Current Working Directory = %s\n",
+            std::filesystem::current_path().generic_string().c_str());
+        LOG("Cannot open project file! No such file or directory!\n");
 
-    std::exit(EXIT_FAILURE);
-  }
+        std::exit(EXIT_FAILURE);
+    }
 
-  std::ifstream ifs(value);
+    std::ifstream ifs(value);
 
-  std::string data;
-  std::string line;
+    std::string data;
+    std::string line;
 
-  while (std::getline(ifs, line)) {
-    data += line + "\n";
-  }
+    while (std::getline(ifs, line)) {
+        data += line + "\n";
+    }
 
-  Mesa::Parser parser(data);
-  Mesa::ParsedFile file = parser.parse();
+    Mesa::Parser parser(data);
+    Mesa::ParsedFile file = parser.parse();
 
-  Mesa::Processor processor(file);
+    Mesa::Processor processor(file);
 
-  workspace->projects.push_back(std::make_shared<Project>());
-  workspace->currentProject = workspace->projects.size() - 1;
+    workspace->projects.push_back(std::make_shared<Project>());
+    workspace->currentProject = workspace->projects.size() - 1;
 
-  processor.buildProject(workspace);
+    processor.buildProject(workspace);
 }
 
 Mesa::PropertyScriptlet::PropertyScriptlet() { name = "Property"; }
 
 void Mesa::PropertyScriptlet::onRun(std::shared_ptr<Workspace> workspace,
                                     const std::string &value) {
-  std::string k, v;
+    std::string k, v;
 
-  bool writeToV = false;
+    bool writeToV = false;
 
-  for (char cChar : value) {
-    if (cChar == ' ')
-      writeToV = true;
+    for (char cChar: value) {
+        if (cChar == ' ')
+            writeToV = true;
 
-    if (writeToV) {
-      v += cChar;
-    } else {
-      k += cChar;
+        if (writeToV) {
+            v += cChar;
+        } else {
+            k += cChar;
+        }
     }
-  }
 
-  k = Util_TrimString(k);
-  v = Util_TrimString(v);
+    k = Util_TrimString(k);
+    v = Util_TrimString(v);
 
-  if (k == "CompilerName") {
-    workspace->properties.insert({Property::CompilerName, v});
-  } else if (k == "BuildDirectory") {
-    workspace->properties.insert({Property::BuildDirectory, v});
-  } else {
-    LOG("Invalid property with name of: %s\n", k.c_str());
+    if (k == "CompilerName") {
+        workspace->properties.insert({Property::CompilerName, v});
+    } else if (k == "BuildDirectory") {
+        workspace->properties.insert({Property::BuildDirectory, v});
+    } else {
+        LOG("Invalid property with name of: %s\n", k.c_str());
 
-    std::exit(EXIT_FAILURE);
-  }
+        std::exit(EXIT_FAILURE);
+    }
 }

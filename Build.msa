@@ -4,12 +4,12 @@
 
 %Config
 {
-	%Property CompilerName G++-MinGW
+	%Property CompilerName Clang++
 	%Property BuildDirectory bin
 }
 
-%Import Scriptlets.msa
 %Import Utils.msa
+%Import Scriptlets.msa
 %Import Base.msa
 
 %Import data:Compilers.msa

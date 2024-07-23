@@ -6,17 +6,17 @@
 
 
 namespace Mesa {
-struct ParsedFile {
-  std::vector<Statement> statements;
-};
+    struct ParsedFile {
+        std::vector<Statement> statements;
+    };
 
-class Parser {
-public:
-  Parser(const std::string &data);
+    class Parser {
+    public:
+        Parser(const std::string &data);
 
-  ParsedFile parse();
+        ParsedFile parse();
 
-private:
-  std::string m_data;
-};
-}; // namespace Mesa
+    private:
+        std::string m_data;
+    };
+};// namespace Mesa

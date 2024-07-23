@@ -15,5 +15,5 @@
 
 %Packages
 {
-	%Require Utils
+	%Package Utils
 }
