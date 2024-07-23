@@ -1,0 +1,25 @@
+%Project Mesa Base
+
+%Include .
+
+%CompilerDefine BUILD_UNIX $CTime.UnixTimestamp
+%CompilerDefine BUILD_DATE $CTime.Formatted
+
+%Files
+{
+	%File Mesa.cpp
+	%File MesaParser.cpp
+	%File MesaGenerator.cpp
+	%File MesaProcessor.cpp
+}
+
+%Config
+{
+	%Config OutputName Mesa
+}
+
+%Packages
+{
+	%Package Scriptlets
+	%Package Utils
+}

@@ -1,0 +1,12 @@
+%Project Utils
+
+%Files
+{
+	%File MesaUtils.cpp
+}
+
+%Config
+{
+	%Config OutputName MesaUtils
+	%Config BuildType SharedLibrary
+}

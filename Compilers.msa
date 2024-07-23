@@ -1,0 +1,19 @@
+%Compilers
+{
+	// Linux paths
+
+	%DefineCompiler Clang /usr/bin/clang
+	%DefineCompiler Clang++ /usr/bin/clang++
+	%DefineCompiler GCC /usr/bin/gcc
+	%DefineCompiler G++ /usr/bin/g++
+
+	// Windows paths with Msys2
+
+	%DefineCompiler Clang C:\msys64\usr\bin\clang.exe
+	%DefineCompiler Clang++ C:\msys64\usr\bin\clang++.exe
+	%DefineCompiler GCC C:\msys64\usr\bin\gcc.exe
+	%DefineCompiler G++ C:\msys64\usr\bin\g++.exe
+
+	// Windows paths to MinGW
+	%DefineCompiler GCC-MinGW C:\msys64\mingw64\bin\x86_64-w64-mingw32-gcc.exe
+	%DefineCompiler G++-MinGW C:\msys64\mingw64\bin\x86_64-w64-mingw32-g++.exe

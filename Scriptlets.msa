@@ -1,0 +1,19 @@
+%Project Scriptlets
+
+%Files
+{
+	%File ProjectScriptlets.cpp
+	%File StdScriptlets.cpp
+	%File WorkspaceScriptlets.cpp
+}
+
+%Config
+{
+	%Config OutputName MesaScriptlets
+	%Config BuildType SharedLibrary
+}
+
+%Packages
+{
+	%Require Utils
+}
