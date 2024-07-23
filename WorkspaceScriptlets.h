@@ -33,4 +33,12 @@ namespace Mesa {
         void onRun(std::shared_ptr<Workspace> workspace,
                    const std::string &value) override;
     };
+
+    class TaskScriptlet : public Scriptlet {
+    public:
+        TaskScriptlet();
+
+        void onRun(std::shared_ptr<Workspace> workspace,
+                   const std::string &value) override;
+    };
 }// namespace Mesa

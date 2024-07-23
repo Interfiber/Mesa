@@ -23,7 +23,7 @@ Mesa::IncludeScriptlet::IncludeScriptlet() {
 void Mesa::IncludeScriptlet::onRun(std::shared_ptr<Workspace> workspace,
                                    const std::string &value) {
     workspace->projects[workspace->currentProject]->includeDirectories.push_back(
-            value);
+            Util_EvalString(workspace, value));
 }
 
 Mesa::CompilerDefineScriptlet::CompilerDefineScriptlet() {
@@ -130,7 +130,10 @@ void Mesa::PackageScriptlet::onRun(std::shared_ptr<Workspace> workspace, const s
                 workspace->projects[workspace->currentProject]->staticLibraries.push_back(buildPath);
             } else {
                 LOG("Cannot link against executable!");
+                std::exit(EXIT_FAILURE);
             }
+
+            workspace->projects[workspace->currentProject]->packageList.push_back(project->name);
 
             f = true;
             break;

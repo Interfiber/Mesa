@@ -9,7 +9,7 @@
 
 namespace Mesa {
     enum class Property { CompilerName,
-                          BuildDirectory };
+                          BuildDirectory, EnableColor };
 
     enum class Config { OutputName,
                         BuildType };
@@ -32,6 +32,7 @@ namespace Mesa {
         std::string linkOptions;
         std::string compilerOptions;
 
+        std::vector<std::string> packageList;
         std::vector<std::filesystem::path> files;
         std::vector<std::filesystem::path> staticLibraries;
         std::vector<std::filesystem::path> includeDirectories;
@@ -50,6 +51,7 @@ namespace Mesa {
         std::vector<std::shared_ptr<Project>> projects;
         std::unordered_map<std::string, std::string> variables;
         std::unordered_map<std::string, std::vector<std::string>> compilers;
+        std::unordered_map<std::string, std::string> tasks;
     };
 
     struct Statement {

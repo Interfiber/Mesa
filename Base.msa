@@ -4,6 +4,7 @@
 
 %CompilerDefine BUILD_UNIX $CTime.UnixTimestamp
 %CompilerDefine BUILD_DATE $CTime.Formatted
+%Include $Global.Includes
 
 %Files
 {

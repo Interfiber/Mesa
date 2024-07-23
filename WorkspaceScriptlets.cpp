@@ -126,9 +126,39 @@ void Mesa::PropertyScriptlet::onRun(std::shared_ptr<Workspace> workspace,
         workspace->properties.insert({Property::CompilerName, v});
     } else if (k == "BuildDirectory") {
         workspace->properties.insert({Property::BuildDirectory, v});
+    } else if (k == "EnableColor") {
+        workspace->properties.insert({ Property::EnableColor, v });
     } else {
         LOG("Invalid property with name of: %s\n", k.c_str());
 
         std::exit(EXIT_FAILURE);
     }
+}
+
+
+Mesa::TaskScriptlet::TaskScriptlet() {
+    name = "Task";
+    isProjectIsolated = false;
+}
+
+void Mesa::TaskScriptlet::onRun(std::shared_ptr<Workspace> workspace,
+                                const std::string &value) {
+    std::string k, v;
+    bool writeToV = false;
+
+    for (char cChar: value) {
+        if (cChar == ' ')
+            writeToV = true;
+
+        if (writeToV) {
+            v += cChar;
+        } else {
+            k += cChar;
+        }
+    }
+
+    k = Util_TrimString(k);
+    v = Util_TrimString(v);
+
+    workspace->tasks.insert({k, v});
 }

@@ -22,6 +22,7 @@ Processor::Processor(const ParsedFile &file) {
     addScriptlet<PropertyScriptlet>();
     addScriptlet<ConfigScriptlet>();
     addScriptlet<PackageScriptlet>();
+    addScriptlet<TaskScriptlet>();
 }
 
 std::shared_ptr<Workspace> Processor::buildWorkspace() {

@@ -1,11 +1,17 @@
 %Workspace Mesa
 
-%Variable Global.Includes [Libraries\Test\Includes]
+%Variable Global.Includes Libraries/Include
 
 %Config
 {
 	%Property CompilerName Clang++
 	%Property BuildDirectory bin
+	%Property EnableColor true
+}
+
+%Tasks
+{
+	%Task run ./build/FusionRuntime/fusionEngineRuntime -game projects/FusionSandbox -fpslimit 120 -developer
 }
 
 %Import Utils.msa
