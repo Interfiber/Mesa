@@ -262,7 +262,7 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
         } else if (buildType == BuildType::StaticLibrary) {
             result += "\t@ar rcs $(BIN_DIR)/" + outName + " " + objFileListBlob;
         } else {
-            result += "\t@$(CXX) -shared -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + " -Wl,--whole-archive" + projectStaticLibs + "-Wl,--no-whole-archive\n";
+            result += "\t@$(CXX) -shared -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + " -Wl,--whole-archive " + projectStaticLibs + " -Wl,--no-whole-archive\n";
         }
 
         result += "\n";

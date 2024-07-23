@@ -18,7 +18,7 @@ std::string Mesa::Util_FixString(const std::string &input) {
     std::string res;
 
     for (char cChar: input) {
-        if (cChar == ' ') {
+        if (cChar == ' ' || cChar == '/' || cChar == '\\') {
             res += '_';
         } else {
             res += cChar;
