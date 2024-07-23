@@ -8,5 +8,5 @@
 %Config
 {
 	%Config OutputName MesaUtils
-	%Config BuildType SharedLibrary
+	%Config BuildType StaticLibrary
 }

@@ -102,6 +102,9 @@ void Mesa::ConfigScriptlet::onRun(std::shared_ptr<Workspace> workspace,
         } else if (v == "SharedLibrary") {
             workspace->projects[workspace->currentProject]->buildType =
                     BuildType::SharedLibrary;
+        } else if (v == "StaticLibrary") {
+            workspace->projects[workspace->currentProject]->buildType =
+                    BuildType::StaticLibrary;
         } else {
             LOG("Invalid build type!\n");
 
@@ -121,7 +124,13 @@ void Mesa::PackageScriptlet::onRun(std::shared_ptr<Workspace> workspace, const s
         if (project->name == value) {
             std::string buildPath = project->outputName;
 
-            workspace->projects[workspace->currentProject]->linkOptions += " -l" + buildPath;
+            if (project->buildType == BuildType::SharedLibrary) {
+                workspace->projects[workspace->currentProject]->linkOptions += " -l" + buildPath;
+            } else if (project->buildType == BuildType::StaticLibrary) {
+                workspace->projects[workspace->currentProject]->staticLibraries.push_back(buildPath);
+            } else {
+                LOG("Cannot link against executable!");
+            }
 
             f = true;
             break;

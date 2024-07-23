@@ -15,7 +15,8 @@ namespace Mesa {
                         BuildType };
 
     enum class BuildType { Executable,
-                           SharedLibrary };
+                           SharedLibrary,
+                           StaticLibrary };
 
     class Project {
     public:
@@ -32,6 +33,7 @@ namespace Mesa {
         std::string compilerOptions;
 
         std::vector<std::filesystem::path> files;
+        std::vector<std::filesystem::path> staticLibraries;
         std::vector<std::filesystem::path> includeDirectories;
     };
 

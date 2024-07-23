@@ -68,6 +68,17 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
         std::string defines;
         std::string includeDirs;
         std::string linkOpts = "-L" + binDir + " " + project->linkOptions;
+        std::string staticLibs;
+
+        for (auto &lib : project->staticLibraries) {
+            std::string libPath = lib;
+#if defined(_WIN32)
+    libPath += ".lib";
+#elif defined(__unix__)
+    libPath += ".a";
+#endif
+            staticLibs += "$(BIN_DIR)/" + libPath + " ";
+        }
 
         for (auto &opt: project->compilerDefines) {
             defines += "-D" + opt.first + "=" + opt.second + " ";
@@ -92,8 +103,10 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
 
         result += Util_FixString(project->name) + "_CPPFLAGS := " + defines + " " +
                   project->compilerOptions + "\n";
-        
+
         result += Util_FixString(project->name) + "_LDFLAGS := " + linkOpts + "\n";
+
+        result += Util_FixString(project->name) + "_STATIC_LIBS := " + staticLibs + "\n";
     }
 
     result += "\n################### PROJECTS ###################\n\n";
@@ -172,6 +185,12 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
 #if defined(_WIN32)
             outName += ".exe";
 #endif
+        } else if (buildType == BuildType::StaticLibrary) {
+#if defined(_WIN32)
+            outName += ".lib";
+#elif defined(__unix)
+            outName += ".a";
+#endif
         }
 
         result +=
@@ -180,12 +199,15 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
                   outName + "\n";
 
         std::string projectLdFlags = "$(" + Util_FixString(project->name) + "_LDFLAGS)";
+        std::string projectStaticLibs = "$(" + Util_FixString(project->name) + "_STATIC_LIBS)";
 
         if (buildType == BuildType::Executable) {
             result +=
-                    "\t@$(CXX) -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + "\n";
+                    "\t@$(CXX) -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + " " + projectStaticLibs + "\n";
+        } else if (buildType == BuildType::StaticLibrary) {
+            result += "\t@ar rcs $(BIN_DIR)/" + outName + " " + objFileListBlob;
         } else {
-            result += "\t@$(CXX) -shared -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + "\n";
+            result += "\t@$(CXX) -shared -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + " -Wl,--whole-archive" + projectStaticLibs + "-Wl,--no-whole-archive\n";
         }
 
         result += "\n";

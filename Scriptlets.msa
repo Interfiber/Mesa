@@ -10,7 +10,7 @@
 %Config
 {
 	%Config OutputName MesaScriptlets
-	%Config BuildType SharedLibrary
+	%Config BuildType StaticLibrary
 }
 
 %Packages
