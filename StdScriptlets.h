@@ -2,11 +2,12 @@
 #include "MesaScriptlet.h"
 
 namespace Mesa {
-	class DefineCompilerScriptlet : public Scriptlet {
-	public:
-		DefineCompilerScriptlet();
+class DefineCompilerScriptlet : public Scriptlet {
+public:
+  DefineCompilerScriptlet();
 
-		void onRun(std::shared_ptr<Workspace> workspace, const std::string& value) override;
-	};
-
+  void onRun(std::shared_ptr<Workspace> workspace,
+             const std::string &value) override;
 };
+
+}; // namespace Mesa
