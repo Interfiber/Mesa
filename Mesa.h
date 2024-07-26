@@ -12,11 +12,19 @@ namespace Mesa {
                           BuildDirectory, EnableColor };
 
     enum class Config { OutputName,
-                        BuildType };
+                        BuildType, OptimizationMode };
 
     enum class BuildType { Executable,
                            SharedLibrary,
                            StaticLibrary };
+
+    enum class OptimizationMode {
+        None,
+        O1,
+        O2,
+        O3,
+        OFast
+    };
 
     class Project {
     public:

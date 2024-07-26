@@ -17,6 +17,7 @@
 %Config
 {
 	%Config OutputName Mesa
+	%Config OptimizationMode $Global.OptimizationMode
 }
 
 %Packages

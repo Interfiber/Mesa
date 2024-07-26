@@ -1,6 +1,7 @@
 %Workspace Mesa
 
 %Variable Global.Includes Libraries/Include
+%Variable Global.OptimizationMode O3
 
 %Config
 {

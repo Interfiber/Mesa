@@ -93,6 +93,8 @@ void Mesa::ConfigScriptlet::onRun(std::shared_ptr<Workspace> workspace,
     k = Util_TrimString(k);
     v = Util_TrimString(v);
 
+    v = Util_EvalString(workspace, v);
+
     if (k == "OutputName") {
         workspace->projects[workspace->currentProject]->outputName = v;
     } else if (k == "BuildType") {
@@ -107,6 +109,22 @@ void Mesa::ConfigScriptlet::onRun(std::shared_ptr<Workspace> workspace,
                     BuildType::StaticLibrary;
         } else {
             LOG("Invalid build type!\n");
+
+            std::exit(EXIT_FAILURE);
+        }
+    } else if (k == "OptimizationMode") {
+        if (v == "None") {
+
+        } else if (v == "O1") {
+            workspace->projects[workspace->currentProject]->compilerOptions += "-O1 ";
+        } else if (v == "O2") {
+            workspace->projects[workspace->currentProject]->compilerOptions += "-O2 ";
+        } else if (v == "O3") {
+            workspace->projects[workspace->currentProject]->compilerOptions += "-O3 ";
+        } else if (v == "OFast") {
+            workspace->projects[workspace->currentProject]->compilerOptions += "-Ofast ";
+        } else {
+            LOG("Invalid OptimizationMode of: %s\n", v.c_str());
 
             std::exit(EXIT_FAILURE);
         }

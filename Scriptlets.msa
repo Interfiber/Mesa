@@ -11,6 +11,7 @@
 {
 	%Config OutputName MesaScriptlets
 	%Config BuildType StaticLibrary
+	%Config OptimizationMode $Global.OptimizationMode
 }
 
 %Packages
