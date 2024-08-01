@@ -8,6 +8,7 @@
 	%Property CompilerName Clang++
 	%Property BuildDirectory bin
 	%Property EnableColor true
+    %Property C++Standard 17
 }
 
 %Tasks

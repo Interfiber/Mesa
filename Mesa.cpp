@@ -13,8 +13,8 @@ void showHelp() {
   printf("Mesa v2.1, IBAtechSoftware Build System\n"); // TODO
   printf("Author: Interfiber <webmaster@interfiber.dev>\n");
   printf("Commands:\n");
-  printf(" build - Build the current working directory using build.msa\n");
-  printf(" iiiii - Airports suck... 7/21/2024\n");
+  printf(" build  - Build the current working directory using build.msa\n");
+  printf(" compdb - Generate compile_commands.json from the current workspace\n");
   printf("\nThis program is part of the Fusion game engine, but can be "
          "distributed separately\n");
 

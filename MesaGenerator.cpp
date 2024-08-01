@@ -38,7 +38,7 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
         std::exit(EXIT_FAILURE);
     }
 
-    std::string binDir;
+    std::string binDir, cxxVersion;
 
     if (workspace->properties.find(Property::BuildDirectory) ==
         workspace->properties.end()) {
@@ -47,6 +47,14 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
         binDir = "bin";
     } else {
         binDir = workspace->properties[Property::BuildDirectory];
+    }
+
+    if (workspace->properties.find(Property::CXXVersion) == workspace->properties.end()) {
+        LOG("No C++ standard set, using 11 as default!");
+
+        cxxVersion = "11";
+    } else {
+        cxxVersion = workspace->properties[Property::CXXVersion];
     }
 
     bool enableColor = false;
@@ -111,11 +119,13 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
         includeDirs = Util_TrimString(includeDirs);
         linkOpts = Util_TrimString(linkOpts);
 
+        std::string cxxVersionFlag = "-std=c++" + cxxVersion;
+
         result +=
                 Util_FixString(project->name) + "_INCDIRS := " + includeDirs + "\n";
 
         result += Util_FixString(project->name) + "_CPPFLAGS := " + defines + " " +
-                  project->compilerOptions + "\n";
+                  project->compilerOptions + cxxVersionFlag + "\n";
 
         result += Util_FixString(project->name) + "_LDFLAGS := " + linkOpts + "\n";
 

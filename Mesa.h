@@ -9,22 +9,14 @@
 
 namespace Mesa {
     enum class Property { CompilerName,
-                          BuildDirectory, EnableColor };
+                          BuildDirectory, EnableColor, CXXVersion };
 
     enum class Config { OutputName,
-                        BuildType, OptimizationMode };
+                        BuildType, OptimizationMode, WarningMode, ErrorMode };
 
     enum class BuildType { Executable,
                            SharedLibrary,
                            StaticLibrary };
-
-    enum class OptimizationMode {
-        None,
-        O1,
-        O2,
-        O3,
-        OFast
-    };
 
     class Project {
     public:

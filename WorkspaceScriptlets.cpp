@@ -128,6 +128,8 @@ void Mesa::PropertyScriptlet::onRun(std::shared_ptr<Workspace> workspace,
         workspace->properties.insert({Property::BuildDirectory, v});
     } else if (k == "EnableColor") {
         workspace->properties.insert({ Property::EnableColor, v });
+    } else if (k == "C++Standard") {
+        workspace->properties.insert({ Property::CXXVersion, v });
     } else {
         LOG("Invalid property with name of: %s\n", k.c_str());
 

@@ -114,7 +114,7 @@ void Mesa::ConfigScriptlet::onRun(std::shared_ptr<Workspace> workspace,
         }
     } else if (k == "OptimizationMode") {
         if (v == "None") {
-
+            workspace->projects[workspace->currentProject]->compilerOptions += "-O0 ";
         } else if (v == "O1") {
             workspace->projects[workspace->currentProject]->compilerOptions += "-O1 ";
         } else if (v == "O2") {
@@ -126,6 +126,22 @@ void Mesa::ConfigScriptlet::onRun(std::shared_ptr<Workspace> workspace,
         } else {
             LOG("Invalid OptimizationMode of: %s\n", v.c_str());
 
+            std::exit(EXIT_FAILURE);
+        }
+    } else if (k == "WarningMode") {
+        if (v == "None") {
+        } else if (v == "Wall") {
+            workspace->projects[workspace->currentProject]->compilerOptions += "-Wall ";
+        } else {
+            LOG("Invalid warning mode of: %s\n", v.c_str());
+            std::exit(EXIT_FAILURE);
+        }
+    } else if (k == "ErrorMode") {
+        if (v == "None") {
+        } else if (v == "Werror") {
+            workspace->projects[workspace->currentProject]->compilerOptions += "-Werror ";
+        } else {
+            LOG("Invalid error mode of: %s\n", v.c_str());
             std::exit(EXIT_FAILURE);
         }
     }

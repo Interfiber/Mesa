@@ -17,3 +17,8 @@
 	// Windows paths to MinGW
 	%DefineCompiler GCC-MinGW C:\msys64\mingw64\bin\x86_64-w64-mingw32-gcc.exe
 	%DefineCompiler G++-MinGW C:\msys64\mingw64\bin\x86_64-w64-mingw32-g++.exe
+
+	// CCache paths for Linux
+	%DefineCompiler Clang++-CCache /usr/lib64/ccache/clang++
+	%DefineCompiler G++-CCache
+}
