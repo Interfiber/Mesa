@@ -1,4 +1,5 @@
 #include "WorkspaceScriptlets.h"
+#include "Mesa.h"
 #include "MesaParser.h"
 #include "MesaProcessor.h"
 #include "MesaUtils.h"
@@ -49,7 +50,25 @@ void Mesa::ImportScriptlet::onRun(std::shared_ptr<Workspace> workspace,
         if (split[0] == "data") {
             split[1] = Util_TrimString(split[1]);
 
-            std::ifstream ifs(split[1]);
+            // Find library path
+            std::filesystem::path libraryPath;
+
+            for (auto &libSearchPath : Mesa::librarySearchPaths) {
+                if (std::filesystem::exists(libSearchPath))  {
+                    libraryPath = libSearchPath;
+                    break;
+                }
+            }
+
+            if (libraryPath.empty()) {
+                LOG("Failed to find Library path, searched all avalible paths:\n");
+
+                for (auto &p : Mesa::librarySearchPaths) { LOG("\t%s\n", p.c_str()); }
+
+                std::exit(EXIT_FAILURE);
+            }
+
+            std::ifstream ifs(libraryPath / split[1]);
 
             std::string data;
             std::string line;
@@ -64,7 +83,7 @@ void Mesa::ImportScriptlet::onRun(std::shared_ptr<Workspace> workspace,
             Mesa::Processor processor(file);
             processor.buildProject(workspace);
 
-            LOG("Imported data project from: %s\n", split[1].c_str());
+            LOG("Imported data project from: %s/%s\n", libraryPath.c_str(), split[1].c_str());
 
             return;
         }

@@ -12,11 +12,21 @@ namespace Mesa {
                           BuildDirectory, EnableColor, CXXVersion };
 
     enum class Config { OutputName,
-                        BuildType, OptimizationMode, WarningMode, ErrorMode };
+                        BuildType, OptimizationMode, WarningMode, ErrorMode, EnableDebugSymbols };
 
     enum class BuildType { Executable,
                            SharedLibrary,
                            StaticLibrary };
+
+    /**
+     * List of paths for data projects to be located
+     */
+    static std::vector<std::filesystem::path> librarySearchPaths = {
+        "/usr/share/Mesa/Library",
+        "/usr/local/share/Mesa/Library",
+        "/Mesa/Library",
+        "./Library"
+    };
 
     class Project {
     public:

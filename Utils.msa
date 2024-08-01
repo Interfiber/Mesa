@@ -10,4 +10,5 @@
 	%Config OutputName MesaUtils
 	%Config BuildType StaticLibrary
 	%Config OptimizationMode $Global.OptimizationMode
+	%Config EnableDebugSymbols $Global.EnableDebugSymbols
 }

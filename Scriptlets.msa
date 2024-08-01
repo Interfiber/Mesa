@@ -12,6 +12,7 @@
 	%Config OutputName MesaScriptlets
 	%Config BuildType StaticLibrary
 	%Config OptimizationMode $Global.OptimizationMode
+	%Config EnableDebugSymbols $Global.EnableDebugSymbols
 }
 
 %Packages

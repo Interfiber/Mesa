@@ -2,6 +2,7 @@
 
 %Variable Global.Includes Libraries/Include
 %Variable Global.OptimizationMode O3
+%Variable Global.EnableDebugSymbols true
 
 %Config
 {

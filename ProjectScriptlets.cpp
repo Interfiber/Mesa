@@ -144,6 +144,10 @@ void Mesa::ConfigScriptlet::onRun(std::shared_ptr<Workspace> workspace,
             LOG("Invalid error mode of: %s\n", v.c_str());
             std::exit(EXIT_FAILURE);
         }
+    } else if (k == "EnableDebugSymbols") {
+        if (v == "true") {
+            workspace->projects[workspace->currentProject]->compilerOptions += "-g ";
+        }
     }
 }
 

@@ -18,6 +18,7 @@
 {
 	%Config OutputName Mesa
 	%Config OptimizationMode $Global.OptimizationMode
+	%Config EnableDebugSymbols $Global.EnableDebugSymbols
 }
 
 %Packages
