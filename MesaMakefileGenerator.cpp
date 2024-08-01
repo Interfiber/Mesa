@@ -300,7 +300,21 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
 
     result += "\n";
 
-    result += ".PHONY: clean " + phonyExtra + "\n";
+    /*
+    make --always-make --dry-run \
+ | grep -wE 'gcc|g\+\+|c\+\+' \
+ | grep -w '\-c' \
+ | jq -nR '[inputs|{directory:".", command:., file: match(" [^ ]+$").string[1:]}]' \
+    */
+
+    result += ".ONESHELL:\ncompdb:\n";
+    result += "\tmake --always-make --dry-run \\\n";
+    result += "\t| grep -wE 'clang|clang\\+\\+' \\\n";
+    result += "\t| grep -w '\\-c' \\\n";
+    result += "\t| jq -nR '[inputs|{directory:\".\", command:., file: match(\" [^ ]+$$\").string[1:]}]' > compile_commands.json";
+    result += "\n";
+
+    result += ".PHONY: clean compdb " + phonyExtra + "\n";
 
     return result;
 }

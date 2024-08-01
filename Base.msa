@@ -10,7 +10,7 @@
 {
 	%File Mesa.cpp
 	%File MesaParser.cpp
-	%File MesaGenerator.cpp
+	%File MesaMakefileGenerator.cpp
 	%File MesaProcessor.cpp
 }
 

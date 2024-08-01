@@ -1,0 +1,42 @@
+[
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -O3 -g -std=c++17 -DMESA_BUILD -c MesaUtils.cpp -o bin/objs/Utils/MesaUtils.cpp.o",
+    "file": "bin/objs/Utils/MesaUtils.cpp.o"
+  },
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -O3 -g -std=c++17 -DMESA_BUILD -c ProjectScriptlets.cpp -o bin/objs/Scriptlets/ProjectScriptlets.cpp.o",
+    "file": "bin/objs/Scriptlets/ProjectScriptlets.cpp.o"
+  },
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -O3 -g -std=c++17 -DMESA_BUILD -c StdScriptlets.cpp -o bin/objs/Scriptlets/StdScriptlets.cpp.o",
+    "file": "bin/objs/Scriptlets/StdScriptlets.cpp.o"
+  },
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -O3 -g -std=c++17 -DMESA_BUILD -c WorkspaceScriptlets.cpp -o bin/objs/Scriptlets/WorkspaceScriptlets.cpp.o",
+    "file": "bin/objs/Scriptlets/WorkspaceScriptlets.cpp.o"
+  },
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -DBUILD_DATE=Thu\\ Aug\\ \\ 1\\ 15:19:39\\ 2024 -DBUILD_UNIX=1722539979 -I. -ILibraries/Include  -O3 -g -std=c++17 -DMESA_BUILD -c Mesa.cpp -o bin/objs/Mesa_Base/Mesa.cpp.o",
+    "file": "bin/objs/Mesa_Base/Mesa.cpp.o"
+  },
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -DBUILD_DATE=Thu\\ Aug\\ \\ 1\\ 15:19:39\\ 2024 -DBUILD_UNIX=1722539979 -I. -ILibraries/Include  -O3 -g -std=c++17 -DMESA_BUILD -c MesaParser.cpp -o bin/objs/Mesa_Base/MesaParser.cpp.o",
+    "file": "bin/objs/Mesa_Base/MesaParser.cpp.o"
+  },
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -DBUILD_DATE=Thu\\ Aug\\ \\ 1\\ 15:19:39\\ 2024 -DBUILD_UNIX=1722539979 -I. -ILibraries/Include  -O3 -g -std=c++17 -DMESA_BUILD -c MesaMakefileGenerator.cpp -o bin/objs/Mesa_Base/MesaMakefileGenerator.cpp.o",
+    "file": "bin/objs/Mesa_Base/MesaMakefileGenerator.cpp.o"
+  },
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -DBUILD_DATE=Thu\\ Aug\\ \\ 1\\ 15:19:39\\ 2024 -DBUILD_UNIX=1722539979 -I. -ILibraries/Include  -O3 -g -std=c++17 -DMESA_BUILD -c MesaProcessor.cpp -o bin/objs/Mesa_Base/MesaProcessor.cpp.o",
+    "file": "bin/objs/Mesa_Base/MesaProcessor.cpp.o"
+  }
+]

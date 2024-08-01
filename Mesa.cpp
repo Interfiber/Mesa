@@ -37,7 +37,6 @@ void Mesa_ShowHelp() {
     printf("Author: Interfiber <webmaster@interfiber.dev>\n");
     printf("Commands:\n");
     printf(" build  - Build the current working directory using build.msa\n");
-    printf(" compdb - Generate compile_commands.json from the current workspace\n");
     printf("----------------------------------------------------------------------------\n");
 
 #if defined(BUILD_DATE)
