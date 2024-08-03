@@ -8,6 +8,9 @@
 // Base Mesa data types
 
 namespace Mesa {
+    // Faster, and less log spam
+    const std::string preferredCMakeGenerator = "Ninja";
+    
     enum class Property { CompilerName,
                           BuildDirectory, EnableColor, CXXVersion };
 
@@ -36,14 +39,18 @@ namespace Mesa {
         std::filesystem::path rootDir;
         std::string outputName;
 
+        bool isCMake = false;
+
         BuildType buildType = BuildType::Executable;
 
         std::unordered_map<std::string, std::string> compilerDefines;
         std::string linkOptions;
         std::string compilerOptions;
 
+
         std::vector<std::string> packageList;
         std::vector<std::filesystem::path> files;
+        std::vector<std::filesystem::path> sharedLibraries;
         std::vector<std::filesystem::path> staticLibraries;
         std::vector<std::filesystem::path> includeDirectories;
     };

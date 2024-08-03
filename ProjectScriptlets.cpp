@@ -163,7 +163,11 @@ void Mesa::PackageScriptlet::onRun(std::shared_ptr<Workspace> workspace, const s
             std::string buildPath = project->outputName;
 
             if (project->buildType == BuildType::SharedLibrary) {
-                workspace->projects[workspace->currentProject]->linkOptions += " -l" + buildPath;
+#if defined(__unix__)
+                workspace->projects[workspace->currentProject]->sharedLibraries.push_back(buildPath + ".so");
+#elif defined(_WIN32)
+                workspace->projects[workspace->currentProject]->sharedLibraries.push_back(buildPath + ".dll");
+#endif
             } else if (project->buildType == BuildType::StaticLibrary) {
                 workspace->projects[workspace->currentProject]->staticLibraries.push_back(buildPath);
             } else {

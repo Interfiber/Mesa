@@ -5,6 +5,7 @@
 %CompilerDefine BUILD_UNIX $CTime.UnixTimestamp
 %CompilerDefine BUILD_DATE $CTime.Formatted
 %Include $Global.Includes
+%Include SDL/include
 
 %Files
 {
@@ -25,4 +26,5 @@
 {
 	%Package Scriptlets
 	%Package Utils
+	%PackageCMake SDL SDL3
 }

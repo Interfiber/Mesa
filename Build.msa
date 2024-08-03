@@ -17,6 +17,7 @@
 	%Task run ./build/FusionRuntime/fusionEngineRuntime -game projects/FusionSandbox -fpslimit 120 -developer
 }
 
+%ImportCMake SDL
 %Import Utils.msa
 %Import Scriptlets.msa
 %Import Base.msa

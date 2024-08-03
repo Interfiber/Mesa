@@ -5,6 +5,7 @@
 	%File ProjectScriptlets.cpp
 	%File StdScriptlets.cpp
 	%File WorkspaceScriptlets.cpp
+	%File CMakeScriptlets.cpp
 }
 
 %Config

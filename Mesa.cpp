@@ -60,6 +60,7 @@ int main(int argc, char **argv) {
     if (args.size() == 2) {
         if (args[1] == "build") {
             Mesa_RunBuild();
+        } else {
         }
     }
 }

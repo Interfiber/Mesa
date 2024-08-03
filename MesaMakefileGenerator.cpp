@@ -1,5 +1,5 @@
-#include "MesaGenerator.h"
 #include "Mesa.h"
+#include "MesaGenerator.h"
 #include "MesaUtils.h"
 
 Mesa::Generator::Generator() = default;
@@ -86,10 +86,20 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
     result += "OBJ_DIR := $(BIN_DIR)/objs\n";
 
     for (auto &project: workspace->projects) {
+        if (project->isCMake) continue;
+
+
         std::string defines;
         std::string includeDirs;
-        std::string linkOpts = "-L$(BIN_DIR)" + project->linkOptions;
+        std::string linkOpts = "-L$(BIN_DIR) " + project->linkOptions;
         std::string staticLibs;
+        std::string sharedLibs;
+
+        for (auto &lib: project->sharedLibraries) {
+            std::string libPath = lib;
+
+            sharedLibs += "$(BIN_DIR)/" + libPath + " ";
+        }
 
         for (auto &lib: project->staticLibraries) {
             std::string libPath = lib;
@@ -130,24 +140,30 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
         result += Util_FixString(project->name) + "_LDFLAGS := " + linkOpts + "\n";
 
         result += Util_FixString(project->name) + "_STATIC_LIBS := " + staticLibs + "\n";
+
+        result += Util_FixString(project->name) + "_DYN_LIBS := " + sharedLibs + "\n";
     }
 
     result += "\n################### PROJECTS ###################\n\n";
 
     std::string projectList;
     for (auto &project: workspace->projects) {
+        if (project->isCMake) continue;
+
         projectList += Util_FixString(project->name) + " ";
     }
 
     result += "all: " + projectList + "\n\n";
     result += "clean:\n";
-    result += "\t@echo $(COLOR_BLUE)[RM]$(COLOR_NORM) Purging contents of $(STYLE_ULINE)$(BIN_DIR)$(STYLE_NORM)\n";
-    result += "\t@rm -rf $(BIN_DIR)/*\n\n";
+    result += "\t@echo $(COLOR_BLUE)[RM]$(COLOR_NORM) Purging contents of $(STYLE_ULINE)$(BIN_DIR)/objs/$(STYLE_NORM)\n";
+    result += "\t@rm -rf $(BIN_DIR)/objs/*\n\n";
     result += "Prep:\n";
     result += "\t@echo $(COLOR_BLUE)[MKDIR]$(COLOR_NORM) Creating $(STYLE_ULINE)$(OBJ_DIR)$(STYLE_NORM)\n";
     result += "\t@mkdir -p $(OBJ_DIR)\n";
 
     for (auto &project: workspace->projects) {
+        if (project->isCMake) continue;
+
         result += "\t@mkdir -p $(OBJ_DIR)/" + Util_FixString(project->name) + "\n";
     }
 
@@ -157,6 +173,8 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
     result += "\t@echo \"### Project List ###\"\n";
 
     for (auto &project: workspace->projects) {
+        if (project->isCMake) continue;
+
         std::string type;
 
         switch (project->buildType) {
@@ -181,6 +199,8 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
     result += "\n";
 
     for (auto &project: workspace->projects) {
+        if (project->isCMake) continue;
+
         std::string fileList;
 
         for (auto &file: project->files) {
@@ -265,14 +285,17 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
 
         std::string projectLdFlags = "$(" + Util_FixString(project->name) + "_LDFLAGS)";
         std::string projectStaticLibs = "$(" + Util_FixString(project->name) + "_STATIC_LIBS)";
+        std::string projectDynLibs = "$(" + Util_FixString(project->name) + "_DYN_LIBS)";
+
+        std::string rPath = " -Wl,-rpath $(BIN_DIR) ";
 
         if (buildType == BuildType::Executable) {
             result +=
-                    "\t@$(CXX) -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + " " + projectStaticLibs + "\n";
+                    "\t@$(CXX) -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + " " + projectStaticLibs +  rPath + projectDynLibs + "\n";
         } else if (buildType == BuildType::StaticLibrary) {
             result += "\t@ar rcs $(BIN_DIR)/" + outName + " " + objFileListBlob;
         } else {
-            result += "\t@$(CXX) -shared -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + " -Wl,--whole-archive " + projectStaticLibs + " -Wl,--no-whole-archive\n";
+            result += "\t@$(CXX) -shared -Wl,-soname," + outName + " -o $(BIN_DIR)/" + outName + " " + objFileListBlob + " " + projectLdFlags + " -Wl,--whole-archive " + projectStaticLibs + " -Wl,--no-whole-archive\n";
         }
 
         result += "\n";

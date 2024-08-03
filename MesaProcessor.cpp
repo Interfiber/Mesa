@@ -1,4 +1,5 @@
 #include "MesaProcessor.h"
+#include "CMakeScriptlets.h"
 #include "MesaUtils.h"
 #include "ProjectScriptlets.h"
 #include "StdScriptlets.h"
@@ -23,6 +24,9 @@ Processor::Processor(const ParsedFile &file) {
     addScriptlet<ConfigScriptlet>();
     addScriptlet<PackageScriptlet>();
     addScriptlet<TaskScriptlet>();
+
+    addScriptlet<ImportCMakeScriptlet>();
+    addScriptlet<PackageCMakeScriptlet>();
 }
 
 std::shared_ptr<Workspace> Processor::buildWorkspace() {
