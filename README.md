@@ -13,6 +13,9 @@ C++ buildsystem & Makefile generator
 ## Building
 The ```Makefile``` in this repo will build Mesa, the built executable will be located at ```bin/Mesa```
 
+## Getting Started
+See the [wiki](https://github.com/Interfiber/Mesa/wiki)
+
 ## Screenshots
 
 ![](./resources/demo_01.png)
