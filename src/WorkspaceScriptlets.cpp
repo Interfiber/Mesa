@@ -34,7 +34,7 @@ void Mesa::VariableScriptlet::onRun(std::shared_ptr<Workspace> workspace,
         }
     }
 
-    workspace->variables.insert({k, v});
+    workspace->variables.insert({ k, Util_EvalString(workspace, v) });
 }
 
 Mesa::ImportScriptlet::ImportScriptlet() { name = "Import"; }

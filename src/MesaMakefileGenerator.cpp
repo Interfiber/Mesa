@@ -103,11 +103,6 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
 
         for (auto &lib: project->staticLibraries) {
             std::string libPath = lib;
-#if defined(_WIN32)
-            libPath += ".lib";
-#elif defined(__unix__)
-            libPath += ".a";
-#endif
             staticLibs += "$(BIN_DIR)/" + libPath + " ";
         }
 
@@ -118,7 +113,7 @@ std::string Mesa::MakefileGenerator::generate(std::shared_ptr<Workspace> workspa
         for (auto &include: project->includeDirectories) {
             defines += "-I" + include.generic_string() + " ";
             includeDirs += "$(wildcard " + include.generic_string() +
-                           "/*.h) $(wildcard " + include.generic_string() + "/*.hpp)";
+                           "/*.h) $(wildcard " + include.generic_string() + "/*.hpp) ";
         }
 
         if (project->buildType == BuildType::SharedLibrary) {

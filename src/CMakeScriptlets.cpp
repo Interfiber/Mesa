@@ -117,7 +117,7 @@ void Mesa::PackageCMakeScriptlet::onRun(std::shared_ptr<Workspace> workspace, co
 
     if (workspace->properties.find(Property::BuildDirectory) ==
         workspace->properties.end()) {
-        LOG("No build directory set, using bin as default!");
+        LOG("No build directory set, using bin as default!\n");
 
         binDir = "bin";
     } else {
@@ -129,7 +129,6 @@ void Mesa::PackageCMakeScriptlet::onRun(std::shared_ptr<Workspace> workspace, co
         libFile = std::filesystem::path(libFile.parent_path()) / std::filesystem::read_symlink(libFile);
 
         LOG("Resolved path to: %s\n", libFile.c_str());
-
 
         std::filesystem::path outFile(binDir / libFile.filename());
 
@@ -145,7 +144,7 @@ void Mesa::PackageCMakeScriptlet::onRun(std::shared_ptr<Workspace> workspace, co
     if (!linkStatic) {
         workspace->projects[workspace->currentProject]->sharedLibraries.push_back(libFinal);
     } else {
-        workspace->projects[workspace->currentProject]->staticLibraries.push_back(libFile);
+        workspace->projects[workspace->currentProject]->staticLibraries.push_back(libFinal);
     }
 
     std::filesystem::path outFile = std::filesystem::path(binDir) / std::filesystem::path(libFile.filename().generic_string());

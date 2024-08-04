@@ -24,5 +24,4 @@
 {
 	%Package Scriptlets
 	%Package Utils
-	%PackageCMake SDL SDL3
 }

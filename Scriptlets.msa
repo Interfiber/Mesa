@@ -8,6 +8,7 @@
 	%File src/StdScriptlets.cpp
 	%File src/WorkspaceScriptlets.cpp
 	%File src/CMakeScriptlets.cpp
+	%File src/PkgConfigScriptlets.cpp
 }
 
 %Config
