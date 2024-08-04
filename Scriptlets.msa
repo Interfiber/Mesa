@@ -1,11 +1,13 @@
 %Project Scriptlets
 
+%Include $Global.Includes
+
 %Files
 {
-	%File ProjectScriptlets.cpp
-	%File StdScriptlets.cpp
-	%File WorkspaceScriptlets.cpp
-	%File CMakeScriptlets.cpp
+	%File src/ProjectScriptlets.cpp
+	%File src/StdScriptlets.cpp
+	%File src/WorkspaceScriptlets.cpp
+	%File src/CMakeScriptlets.cpp
 }
 
 %Config

@@ -1,7 +1,5 @@
 %Project Mesa Base
 
-%Include .
-
 %CompilerDefine BUILD_UNIX $CTime.UnixTimestamp
 %CompilerDefine BUILD_DATE $CTime.Formatted
 %Include $Global.Includes
@@ -9,10 +7,10 @@
 
 %Files
 {
-	%File Mesa.cpp
-	%File MesaParser.cpp
-	%File MesaMakefileGenerator.cpp
-	%File MesaProcessor.cpp
+	%File src/Mesa.cpp
+	%File src/MesaParser.cpp
+	%File src/MesaMakefileGenerator.cpp
+	%File src/MesaProcessor.cpp
 }
 
 %Config

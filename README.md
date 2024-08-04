@@ -15,6 +15,6 @@ The ```Makefile``` in this repo will build Mesa, the built executable will be lo
 
 ## Screenshots
 
-![](./demo_01.png)
-![](./demo_02.png)
-![](./demo_03.png)
+![](./resources/demo_01.png)
+![](./resources/demo_02.png)
+![](./resources/demo_03.png)

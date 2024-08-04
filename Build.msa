@@ -1,6 +1,6 @@
 %Workspace Mesa
 
-%Variable Global.Includes Libraries/Include
+%Variable Global.Includes include
 %Variable Global.OptimizationMode O3
 %Variable Global.EnableDebugSymbols true
 
@@ -10,11 +10,6 @@
 	%Property BuildDirectory bin
 	%Property EnableColor true
     %Property C++Standard 17
-}
-
-%Tasks
-{
-	%Task run ./build/FusionRuntime/fusionEngineRuntime -game projects/FusionSandbox -fpslimit 120 -developer
 }
 
 %ImportCMake SDL

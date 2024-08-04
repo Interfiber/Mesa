@@ -1,42 +1,47 @@
 [
   {
     "directory": ".",
-    "command": "/usr/bin/clang++  -O3 -g -std=c++17 -DMESA_BUILD -c MesaUtils.cpp -o bin/objs/Utils/MesaUtils.cpp.o",
-    "file": "bin/objs/Utils/MesaUtils.cpp.o"
+    "command": "/usr/bin/clang++  -Iinclude  -O3 -g -std=c++17 -DMESA_BUILD -c src/MesaUtils.cpp -o bin/objs/Utils/src_MesaUtils.cpp.o",
+    "file": "bin/objs/Utils/src_MesaUtils.cpp.o"
   },
   {
     "directory": ".",
-    "command": "/usr/bin/clang++  -O3 -g -std=c++17 -DMESA_BUILD -c ProjectScriptlets.cpp -o bin/objs/Scriptlets/ProjectScriptlets.cpp.o",
-    "file": "bin/objs/Scriptlets/ProjectScriptlets.cpp.o"
+    "command": "/usr/bin/clang++  -Iinclude  -O3 -g -std=c++17 -DMESA_BUILD -c src/ProjectScriptlets.cpp -o bin/objs/Scriptlets/src_ProjectScriptlets.cpp.o",
+    "file": "bin/objs/Scriptlets/src_ProjectScriptlets.cpp.o"
   },
   {
     "directory": ".",
-    "command": "/usr/bin/clang++  -O3 -g -std=c++17 -DMESA_BUILD -c StdScriptlets.cpp -o bin/objs/Scriptlets/StdScriptlets.cpp.o",
-    "file": "bin/objs/Scriptlets/StdScriptlets.cpp.o"
+    "command": "/usr/bin/clang++  -Iinclude  -O3 -g -std=c++17 -DMESA_BUILD -c src/StdScriptlets.cpp -o bin/objs/Scriptlets/src_StdScriptlets.cpp.o",
+    "file": "bin/objs/Scriptlets/src_StdScriptlets.cpp.o"
   },
   {
     "directory": ".",
-    "command": "/usr/bin/clang++  -O3 -g -std=c++17 -DMESA_BUILD -c WorkspaceScriptlets.cpp -o bin/objs/Scriptlets/WorkspaceScriptlets.cpp.o",
-    "file": "bin/objs/Scriptlets/WorkspaceScriptlets.cpp.o"
+    "command": "/usr/bin/clang++  -Iinclude  -O3 -g -std=c++17 -DMESA_BUILD -c src/WorkspaceScriptlets.cpp -o bin/objs/Scriptlets/src_WorkspaceScriptlets.cpp.o",
+    "file": "bin/objs/Scriptlets/src_WorkspaceScriptlets.cpp.o"
   },
   {
     "directory": ".",
-    "command": "/usr/bin/clang++  -DBUILD_DATE=Thu\\ Aug\\ \\ 1\\ 15:19:39\\ 2024 -DBUILD_UNIX=1722539979 -I. -ILibraries/Include  -O3 -g -std=c++17 -DMESA_BUILD -c Mesa.cpp -o bin/objs/Mesa_Base/Mesa.cpp.o",
-    "file": "bin/objs/Mesa_Base/Mesa.cpp.o"
+    "command": "/usr/bin/clang++  -Iinclude  -O3 -g -std=c++17 -DMESA_BUILD -c src/CMakeScriptlets.cpp -o bin/objs/Scriptlets/src_CMakeScriptlets.cpp.o",
+    "file": "bin/objs/Scriptlets/src_CMakeScriptlets.cpp.o"
   },
   {
     "directory": ".",
-    "command": "/usr/bin/clang++  -DBUILD_DATE=Thu\\ Aug\\ \\ 1\\ 15:19:39\\ 2024 -DBUILD_UNIX=1722539979 -I. -ILibraries/Include  -O3 -g -std=c++17 -DMESA_BUILD -c MesaParser.cpp -o bin/objs/Mesa_Base/MesaParser.cpp.o",
-    "file": "bin/objs/Mesa_Base/MesaParser.cpp.o"
+    "command": "/usr/bin/clang++  -DBUILD_DATE=Sun\\ Aug\\ \\ 4\\ 10:45:02\\ 2024 -DBUILD_UNIX=1722782702 -Iinclude -ISDL/include  -O3 -g -std=c++17 -DMESA_BUILD -c src/Mesa.cpp -o bin/objs/Mesa_Base/src_Mesa.cpp.o",
+    "file": "bin/objs/Mesa_Base/src_Mesa.cpp.o"
   },
   {
     "directory": ".",
-    "command": "/usr/bin/clang++  -DBUILD_DATE=Thu\\ Aug\\ \\ 1\\ 15:19:39\\ 2024 -DBUILD_UNIX=1722539979 -I. -ILibraries/Include  -O3 -g -std=c++17 -DMESA_BUILD -c MesaMakefileGenerator.cpp -o bin/objs/Mesa_Base/MesaMakefileGenerator.cpp.o",
-    "file": "bin/objs/Mesa_Base/MesaMakefileGenerator.cpp.o"
+    "command": "/usr/bin/clang++  -DBUILD_DATE=Sun\\ Aug\\ \\ 4\\ 10:45:02\\ 2024 -DBUILD_UNIX=1722782702 -Iinclude -ISDL/include  -O3 -g -std=c++17 -DMESA_BUILD -c src/MesaParser.cpp -o bin/objs/Mesa_Base/src_MesaParser.cpp.o",
+    "file": "bin/objs/Mesa_Base/src_MesaParser.cpp.o"
   },
   {
     "directory": ".",
-    "command": "/usr/bin/clang++  -DBUILD_DATE=Thu\\ Aug\\ \\ 1\\ 15:19:39\\ 2024 -DBUILD_UNIX=1722539979 -I. -ILibraries/Include  -O3 -g -std=c++17 -DMESA_BUILD -c MesaProcessor.cpp -o bin/objs/Mesa_Base/MesaProcessor.cpp.o",
-    "file": "bin/objs/Mesa_Base/MesaProcessor.cpp.o"
+    "command": "/usr/bin/clang++  -DBUILD_DATE=Sun\\ Aug\\ \\ 4\\ 10:45:02\\ 2024 -DBUILD_UNIX=1722782702 -Iinclude -ISDL/include  -O3 -g -std=c++17 -DMESA_BUILD -c src/MesaMakefileGenerator.cpp -o bin/objs/Mesa_Base/src_MesaMakefileGenerator.cpp.o",
+    "file": "bin/objs/Mesa_Base/src_MesaMakefileGenerator.cpp.o"
+  },
+  {
+    "directory": ".",
+    "command": "/usr/bin/clang++  -DBUILD_DATE=Sun\\ Aug\\ \\ 4\\ 10:45:02\\ 2024 -DBUILD_UNIX=1722782702 -Iinclude -ISDL/include  -O3 -g -std=c++17 -DMESA_BUILD -c src/MesaProcessor.cpp -o bin/objs/Mesa_Base/src_MesaProcessor.cpp.o",
+    "file": "bin/objs/Mesa_Base/src_MesaProcessor.cpp.o"
   }
 ]

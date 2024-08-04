@@ -1,8 +1,10 @@
 %Project Utils
 
+%Include $Global.Includes
+
 %Files
 {
-	%File MesaUtils.cpp
+	%File src/MesaUtils.cpp
 }
 
 %Config
